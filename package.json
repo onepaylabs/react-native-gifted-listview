@@ -27,5 +27,7 @@
   },
   "homepage": "https://github.com/FaridSafi/react-native-gifted-listview#readme",
   "dependencies": {
+    "create-react-class": "^15.6.0",
+    "prop-types": "^15.5.10"
   }
 }
