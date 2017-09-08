@@ -17,18 +17,15 @@ var {
 
 // small helper function which merged two objects into one
 function MergeRecursive(obj1, obj2) {
-  for (var p in obj2) {
-    try {
-      if ( obj2[p].constructor==Object ) {
-        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
-      } else {
-        obj1[p] = [...obj1[p], ...obj2[p]];
-      }
-    } catch(e) {
-      obj1[p] = obj2[p];
+  const obj1Copy = { ...obj1 };
+  Object.keys(obj2).forEach((key) => {
+    if (Array.isArray(obj2[key]) && Array.isArray(obj1Copy[key])) {
+      obj1Copy[key] = [...obj1Copy[key], ...obj2[key]];
+    } else {
+      obj1Copy[key] = obj2[key];
     }
-  }
-  return obj1;
+  });
+  return obj1Copy;
 }
 
 var GiftedListView = createReactClass({
